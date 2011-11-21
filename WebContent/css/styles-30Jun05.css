@@ -1,0 +1,200 @@
+body {
+	margin: 0;
+	padding: 0; 
+	text-align: center;}
+
+ul.relatedLinks {
+    list-style-type: none;
+    margin-left: 0;
+    margin-bottom: 9px;
+	padding: 0;}
+
+ul.relatedLinks ul.relatedLinks {
+	margin-bottom: 0px;}
+	
+ul.relatedLinks li {
+    list-style-type: none;
+    background: url(../images/navBul.gif) 0 5px no-repeat;	
+	color: #666;
+	margin-left: 0;
+	padding: 0 0 0 8px;}
+	
+
+
+
+form {
+	margin: 0 0 15px 0;
+	padding: 0;
+	border: 0;}
+
+
+
+
+#document {
+    width: 745px;
+    text-align: left;
+    margin: 0 auto 0 auto;}
+    	
+/* The second to last rule makes all content align left (fixes rule from body)
+The last rule makes the document center in most browsers */
+
+/*
+ ###########################
+# Head Styles				#
+ ###########################
+*/
+
+#head {
+	padding: 29px 0 15px 0;}
+
+	
+#nav1 {
+	clear: left;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	background-color: #F7F7F7;}
+	
+#nav1 table {
+	margin: 0;
+	font-size: 10px;
+	line-height: 10px;
+	width: 100%;
+	}
+
+#nav1 table table {
+	border-bottom: 0;
+	border-right: 0;}
+	
+#nav1 td {
+	color: #666;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-right: 25px;
+	text-transform: uppercase;}
+
+
+#nav1 td img {
+	display: inline;}
+
+
+    
+/*
+ ###########################
+# Nav Styles				#
+ ###########################
+*/
+
+#nav2 {
+    padding: 55px 31px 35px 0;
+    width: 163px !important; /* Styles for Mozilla, Safari, IE Mac */
+    width: 194px; /* Styles for MS IE5 PC */
+    width/**/:/**/163px; /* Styles for IE6 PC */}
+
+.home #nav2 {
+    padding-top: 25px;
+    width: 163px !important; /* Styles for Mozilla, Safari, IE Mac */
+    width: 194px; /* Styles for MS IE5 PC */
+    width/**/:/**/163px; /* Styles for IE6 PC */}
+   
+
+.home #nav2 form {
+	margin: 0;}
+    
+#nav2 ul.breadcrumb {
+	list-style-type: none;
+	margin: 0;
+	padding-left: 0px;}
+	
+#nav2 ul.breadcrumb li  {
+	font-weight: bold;
+	padding: 2px 0 2px 18px;	
+	border-bottom: 1px solid #ccc;
+	background-image: url(../images/navOpenBul.gif);
+	background-position: 8px 8px; 
+	background-repeat: no-repeat;}
+	
+#nav2 ul.breadcrumb li.selected  {
+	background-image: url(../images/navBul_selected.gif);}
+	
+#nav2 ul.breadcrumb li.selected a {
+	color:#666;}	
+
+#nav2 ul.navitemList {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;}
+	
+#nav2 ul.navitemList li  {
+	padding: 2px 0 2px 26px;	
+	border-bottom: 1px dotted #ccc;}
+	
+#nav2 ul.navitemList li.hasChildren, #nav2 ul.navitemList li.haschildren  {
+	background-image: url(../images/navBul.gif);
+	background-position: 18px 6px; 
+	background-repeat: no-repeat;}
+
+#nav2 ul.navitemList li.selected a {
+	color:#666;}	
+
+#nav2 ul.navitemList li.title {
+    padding-left: 14px;
+    background-image: none;
+    color: #999;
+    border-bottom: 0;}
+
+#nav2 img {
+	display: inline;}
+    
+
+
+/*
+ ###################
+# Main Area Styles  #
+ ###################
+*/
+
+#mainCell {
+    width: 551px;
+    padding: 0 0 0 0;} 
+    
+#pageTitle {
+    padding: 27px 0 15px 0;}
+
+/* Body head Styles */
+#bodyHead {
+    border-bottom: 1px solid #ccc;}
+
+
+       
+/* 
+ ##################
+# Main Body Styles #
+ ##################
+*/    
+
+#mainBody {
+    padding: 15px 0 45px 0;}
+
+.home #mainBody {
+	padding-top: 30px;}
+
+
+		
+	
+select, option {
+	font-size: 10px;
+	line-height: 10px;
+	color: #666;}
+
+#mainBody, #nav2, #bodyHead, #foot {
+    font-size: 85% !important; /* Styles for Mozilla, Safari, IE Mac */
+    font-size: 70%; /* Styles for MS IE5 PC */
+    font-size/**/:/**/85%; /* Styles for IE6 PC */
+    line-height: 125%;
+/*	line-height: 13px;
+	font-size: 11px; */
+}
+
+
+h2, h3, h4, h5, h6 {
+	font-size: 100%;}
