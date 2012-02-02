@@ -2,12 +2,10 @@ package com.kiosk.model;
 
 public class Tariff {
 
-	public int tariffID;
-	public String level;
-	public Double price;
+	private int tariffID;
+	private String level;
+	private Double price;
 
-
-	
 	public int getTariffID() {
 		return tariffID;
 	}

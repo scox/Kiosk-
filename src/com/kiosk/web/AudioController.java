@@ -36,72 +36,66 @@ public class AudioController {
 
 	@Autowired
 	private AudioService audioService;
-	
+
 	@Autowired
 	private TariffService tariffService;
-	
+
 	@RequestMapping("/manageAudios.htm")
 	@ModelAttribute
 	public void getAudioManager(Object command, HttpServletRequest request,
-			HttpServletResponse response,ModelMap model, @RequestParam(value = "type") String type) {
+			HttpServletResponse response, ModelMap model,
+			@RequestParam(value = "type") String type) {
 
-		
-		
-		if(type.equalsIgnoreCase("getAdd")){
-			
+		if (type.equalsIgnoreCase("getAdd")) {
+
 			model.put("level", tariffService.getTariffs());
 		}
-			List<Audio> audio = audioService.getAudio();
+		List<Audio> audio = audioService.getAudio();
 
-			TableModel tableModel = new TableModel("Audios", request,
-					response);
-			tableModel.setItems(audio);
-			tableModel.setStateAttr("restore");
+		TableModel tableModel = new TableModel("Audios", request, response);
+		tableModel.setItems(audio);
+		tableModel.setStateAttr("restore");
 
-			// Web Option
+		// Web Option
 
-			tableModel.setTable(getTable());
-			String html = tableModel.render();
-			request.setAttribute("output", html);
-			model.put("command", new Audio());
-			model.put("type", type);
-		
-		
+		tableModel.setTable(getTable());
+		String html = tableModel.render();
+		request.setAttribute("output", html);
+		model.put("command", new Audio());
+		model.put("type", type);
+
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public void showForm() {
 	}
-	
+
 	@RequestMapping("/audioDetails.htm")
 	@ModelAttribute
 	public ModelAndView getViewAudios(HttpServletRequest request,
-			HttpServletResponse response,
-			@RequestParam(value = "id") int id,
-			@RequestParam(value = "type") String type,Object command){
+			HttpServletResponse response, @RequestParam(value = "id") int id,
+			@RequestParam(value = "type") String type, Object command) {
 
 		ModelAndView mv = new ModelAndView();
-		
-		if(type.equalsIgnoreCase("delete")){
-			
-			mv.addObject("result", audioService.deleteAudio(id));
-			
-			
-		}
-		
 
-		else{
+		if (type.equalsIgnoreCase("delete")) {
+
+			mv.addObject("result", audioService.deleteAudio(id));
+
+		}
+
+		else {
 			mv.addObject("audio", audioService.getIndividualAudio(id));
-			System.out.println(audioService.getIndividualAudio(id).getLanguage() + " l");
+			System.out.println(audioService.getIndividualAudio(id)
+					.getLanguage() + " l");
 			mv.addObject("level", tariffService.getTariffs());
 			mv.addObject("command", new Audio());
 		}
-	
-		
+
 		mv.addObject("id", id);
 		mv.addObject("type", type);
 		mv.setViewName("audioDetails");
-		
+
 		return mv;
 
 	}
@@ -115,20 +109,18 @@ public class AudioController {
 		htmlTable.setRow(htmlRow);
 		htmlRow.addColumn(buildLinkColumn("audioID", "Audio ID",
 				ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("language", "Language",
-				ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("level", "Level",
-				ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("dateCreated", "Date Created", ColumnType.DATE));
+		htmlRow.addColumn(buildColumn("language", "Language", ColumnType.NORMAL));
+		htmlRow.addColumn(buildColumn("level", "Level", ColumnType.NORMAL));
+		htmlRow.addColumn(buildColumn("dateCreated", "Date Created",
+				ColumnType.DATE));
 		htmlRow.addColumn(buildColumn("roomNo", "Room No", ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("title", "Title",
+		htmlRow.addColumn(buildColumn("title", "Title", ColumnType.NORMAL));
+		htmlRow.addColumn(buildColumn("description", "Description",
 				ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("description", "Description", ColumnType.NORMAL));
-	
+
 		return htmlTable;
 	}
-	
-	
+
 	private Column buildColumn(String var, String name, ColumnType type) {
 		Column column = new HtmlColumn(var).title(name);
 		return decorateColumn(column, type);
@@ -172,7 +164,7 @@ public class AudioController {
 	}
 
 	private enum ColumnType {
-		NUMBER, NORMAL, OPTION,DATE;
+		NUMBER, NORMAL, OPTION, DATE;
 	}
 
 	public CellEditor setLink() {
@@ -195,5 +187,5 @@ public class AudioController {
 			}
 		};
 	}
-	
+
 }

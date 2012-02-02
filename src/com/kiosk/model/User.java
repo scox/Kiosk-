@@ -2,10 +2,10 @@ package com.kiosk.model;
 
 public class User {
 
-	public int userID;
-	public String username;
-	public String password;
-	public int accessRight;
+	private int userID;
+	private String username;
+	private String password;
+	private int accessRight;
 
 	public int getUserID() {
 		return userID;

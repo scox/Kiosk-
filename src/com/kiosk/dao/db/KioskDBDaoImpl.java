@@ -39,8 +39,6 @@ public class KioskDBDaoImpl extends BaseDao implements KioskDBDao {
 		sb.append("-");
 		sb.append("01");
 
-		System.out.println(t.getPrice());
-
 		return getJdbcTemplate()
 				.update("insert into Payment(Card_Type,Payment_Amount,Card_No ,Sec_Code ,Exp_Date) Values (?,?,?,?,?)",
 						new Object[] { t.getCardType(), t.getPrice(),

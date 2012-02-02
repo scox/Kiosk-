@@ -34,7 +34,7 @@ public class EditAudioController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("result", audioService.editAudio(editAudio));
 		mv.addObject("type", type);
-		
+
 		mv.addObject("command", new Audio());
 		mv.setViewName("audioDetails");
 

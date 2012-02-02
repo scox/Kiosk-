@@ -16,7 +16,7 @@ public class LoginDBDaoImpl extends BaseDao implements LoginDBDao {
 
 	@Override
 	public User getAuthenticateUser(String usr, String pw) {
-		
+
 		List<User> user = getJdbcTemplate()
 				.query("select * from administrator where username = ? and password = ?",
 						new Object[] { usr, pw }, new RowMapper<User>() {

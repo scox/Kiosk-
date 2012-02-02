@@ -1,8 +1,6 @@
 package com.kiosk.web;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,11 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kiosk.model.Audio;
 import com.kiosk.service.AudioService;
-
 
 @Controller
 @SessionAttributes
@@ -29,24 +25,20 @@ public class PlayAudioController {
 
 	@RequestMapping("playAudio.htm")
 	@ModelAttribute
-	public void addAudio(Audio uploadAudio, BindingResult result,
+	public void playAudio(Audio uploadAudio, BindingResult result,
 			HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "audioID") int id) throws IOException {
 
 		byte[] bin = audioService.getMP3(id);
-		
-//		OutputStream ops = response.getOutputStream();   
-		response.setContentType("audio/mpeg");   
-		response.setHeader("Content-disposition",   
-		 "inline; filename=" );   
-		response.setContentLength(bin.length);                    
-//		ops.write(bin,0,bin.length);   
-//		ops.flush();   
-		response.getOutputStream().write(bin,0,bin.length);  
-	System.out.println("heloo" + bin.length);
-		
-		
 
+		// OutputStream ops = response.getOutputStream();
+		response.setContentType("audio/mpeg");
+		response.setHeader("Content-disposition", "inline; filename=");
+		response.setContentLength(bin.length);
+		// ops.write(bin,0,bin.length);
+		// ops.flush();
+		response.getOutputStream().write(bin, 0, bin.length);
+		
 	}
 
 }

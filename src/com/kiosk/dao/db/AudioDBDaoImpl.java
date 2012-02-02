@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.kiosk.model.Audio;
-import com.kiosk.model.Tariff;
 
 @Repository
 public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
@@ -56,7 +55,6 @@ public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
 						Audio a = new Audio();
 						a.setAudioID(rs.getInt("audio_id"));
 						a.setDescription(rs.getString("description"));
-						System.out.println(rs.getString("a_language") + rs.getString("a_level"));
 						a.setLanguage(rs.getString("a_language"));
 						a.setLevel(rs.getString("a_level"));
 						a.setRoomNo(rs.getInt("room_no"));
@@ -85,7 +83,7 @@ public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
 				.update("insert into audio (a_level, title,description,date_created,a_language,room_no,audio)"
 						+ " VALUES (?,?,?,?,?,?,?)",
 						new Object[] { a.getLevel(), a.getTitle(),
-								a.getDescription(),today, a.getLanguage(),
+								a.getDescription(), today, a.getLanguage(),
 								a.getRoomNo(), a.getAudio().getBytes() });
 	}
 
@@ -100,19 +98,21 @@ public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
 	public int editAudio(Audio a) {
 		return getJdbcTemplate()
 				.update("update audio set title = ?, description = ?,a_language = ?, a_level =?, room_no =? where audio_id =?",
-						new Object[] {a.getTitle(),a.getDescription(),a.getLanguage(),a.getLevel(),a.getRoomNo(),a.getAudioID() });
+						new Object[] { a.getTitle(), a.getDescription(),
+								a.getLanguage(), a.getLevel(), a.getRoomNo(),
+								a.getAudioID() });
 	}
 
 	@Override
 	public Blob getAudio(int audioID) {
-	
+
 		List<Blob> audios = getJdbcTemplate().query(
 				"SELECT audio from Audio where audio_id = ?",
 				new Object[] { audioID }, new RowMapper<Blob>() {
 
 					public Blob mapRow(ResultSet rs, int rowNum)
 							throws SQLException {
-				
+
 						return rs.getBlob("audio");
 
 					}
@@ -122,11 +122,9 @@ public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
 
 		if (audios != null && audios.size() > 0)
 			audioResult = audios.get(0);
-	
-		return audioResult;
-		
-	}
-	
 
+		return audioResult;
+
+	}
 
 }

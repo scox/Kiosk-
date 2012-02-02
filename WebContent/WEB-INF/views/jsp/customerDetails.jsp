@@ -168,12 +168,12 @@ function isValidNumbers(evt) {
 							<tr>
 
 								<td><label class="desc"> Name </label> <span> <form:input
-											path="name" id="custname" size="8" tabindex="1" /> </span>
+											path="name" id="custname" size="8" tabindex="1" maxlength ="20"/> </span>
 											
 											
 								</td>
 								<td><label class="desc"> Address </label> <span> <form:input
-											path="address" id="address" type="text" size="8" tabindex="1" />
+											path="address" id="address" type="text" size="8" tabindex="1" maxlength ="20" />
 								</span>
 								</td>
 							</tr>
@@ -181,11 +181,11 @@ function isValidNumbers(evt) {
 							<tr>
 								<td><label class="desc"> Post Code </label> <span> <form:input
 											path="postCode" id="postcode" type="text" size="8"
-											tabindex="1" /> </span>
+											tabindex="1" maxlength ="8" /> </span>
 								</td>
 
 								<td><label class="desc"> Tel No </label> <span> <form:input
-											path="telNo" id="tel" type="text" size="8" tabindex="1" /> </span>
+											path="telNo" id="tel" type="text" size="8" tabindex="1" maxlength ="11"/> </span>
 								</td>
 							</tr>
 
@@ -217,7 +217,7 @@ function isValidNumbers(evt) {
 							<tr>
 								<td><label class="desc"> Email </label> <span> <form:input
 											path="email" id="email" type="text" size="18"
-											tabindex="1" /> </span>
+											tabindex="1" maxlength ="30" /> </span>
 								</td>
 
 							</tr>

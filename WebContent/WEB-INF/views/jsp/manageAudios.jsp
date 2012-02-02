@@ -29,9 +29,12 @@ function ValData(){
     var level = document.getElementById('level').value
     var language = document.getElementById('language').value
     var file = document.getElementById('audio').value
- 
    
-
+    
+    if(file == ''){  
+    	alert('please choose a file');  
+    	return false;           
+    	}
     
    
 if(title == ''){  
@@ -83,6 +86,32 @@ function isValidNumbers(evt) {
 		}
 	}
 	
+	
+	
+	 
+
+	function validateFileExtension(fld) {
+
+	      if(!/(\.mp3)$/i.test(fld.value)) {
+
+	            alert("Invalid file type. mp3's only");
+
+	            fld.form.reset();
+
+	            fld.focus();
+
+	            return false;
+
+	      }
+
+	      return true;
+
+	}
+
+	 
+
+	</script>
+
 
 
 
@@ -173,7 +202,7 @@ function onInvokeAction(id) {
     <c:if test="${(type) == 'getAdd'}">
     
     
-    <form:form ModelAttribute="uploadAudio" onsubmit="return (ValData()&&roomlengthRestriction(document.getElementById('roomNo'), 1, 2))" action = "addAudio.htm" enctype="multipart/form-data" method ="post">
+    <form:form ModelAttribute="uploadAudio" onsubmit="return (ValData()&&roomlengthRestriction(document.getElementById('roomNo'), 1, 2) && validateFileExtension(this.file))" action = "addAudio.htm" enctype="multipart/form-data" method ="post">
 	<input type = "hidden" name = "type" value="getAdd" />
 	<input type = "hidden" name = "subtype" value="doAdd" />
 <table>
@@ -227,7 +256,7 @@ function onInvokeAction(id) {
 
 <tr>
 <td>Audio</td>		
-<td><form:input path="audio" id="audio" type="file"/></td>	
+<td><form:input path="audio" id="audio" name = "file" type="file" onchange="return validateFileExtension(this)"/></td>	
 
 </tr>
 

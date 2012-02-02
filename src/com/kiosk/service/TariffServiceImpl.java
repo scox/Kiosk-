@@ -43,20 +43,19 @@ public class TariffServiceImpl implements TariffService {
 	@Override
 	public boolean updateTariff(int id, Double price, String level) {
 		// TODO Auto-generated method stub
-		
+
 		int i = tariffDBDao.updateTariff(id, price, level);
-		
-		if(i>0){
+
+		if (i > 0) {
 			return true;
-		}
-		else{
-		return false;
+		} else {
+			return false;
 		}
 	}
 
 	@Override
 	public boolean addTariff(String level, Double price) {
-	
+
 		int i = tariffDBDao.addTariff(level, price);
 
 		if (i > 0) {

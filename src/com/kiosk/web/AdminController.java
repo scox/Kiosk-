@@ -45,8 +45,6 @@ public class AdminController {
 
 	}
 
-	
-
 	@RequestMapping("/admin.htm")
 	@ModelAttribute
 	public ModelAndView getAdminLogin(ModelMap model,
@@ -59,14 +57,12 @@ public class AdminController {
 			String password = request.getParameter("password");
 			String username = request.getParameter("username");
 			user = loginService.getAuthenticateUser(username, password);
-			
 
 			if (user != null) {
 				mv.addObject("user", user);
 				type = "home";
 				mv.setViewName("admin");
 
-				System.out.println(type);
 			}
 
 			else {
@@ -75,10 +71,10 @@ public class AdminController {
 
 			}
 		}
-		
+
 		else {
 			mv.setViewName("admin");
-			
+
 		}
 
 		System.out.println(type);

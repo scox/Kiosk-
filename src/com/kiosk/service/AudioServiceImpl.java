@@ -1,12 +1,8 @@
 package com.kiosk.service;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.sql.Blob;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -77,29 +73,26 @@ public class AudioServiceImpl implements AudioService {
 
 		byte[] buf = new byte[1024];
 		byte[] bytes = null;
-		try{
-		InputStream in = blob.getBinaryStream();
+		try {
+			InputStream in = blob.getBinaryStream();
 
-		int n = 0;
+			int n = 0;
 
-		while ((n = in.read(buf)) >= 0) {
+			while ((n = in.read(buf)) >= 0) {
 
-			baos.write(buf, 0, n);
-		}
+				baos.write(buf, 0, n);
+			}
 
-		in.close();
+			in.close();
 
-		bytes = baos.toByteArray();
-		
-		}
-		catch(Exception e){
+			bytes = baos.toByteArray();
+
+		} catch (Exception e) {
 			bytes = null;
 		}
-		 
+
 		return bytes;
-		
 
 	}
 
-	
 }

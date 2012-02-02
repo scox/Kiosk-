@@ -128,19 +128,12 @@ The last rule makes the document center in most browsers */
 	padding: 2px 0 2px 26px;	
 	border-bottom: 1px dotted #ccc;}
 	
-#nav2 ul.navitemList li.hasChildren, #nav2 ul.navitemList li.haschildren  {
-	background-image: url(../images/navBul.gif);
-	background-position: 18px 6px; 
-	background-repeat: no-repeat;}
+
 
 #nav2 ul.navitemList li.selected a {
 	color:#666;}	
 
-#nav2 ul.navitemList li.title {
-    padding-left: 14px;
-    background-image: none;
-    color: #999;
-    border-bottom: 0;}
+
 
 #nav2 img {
 	display: inline;}

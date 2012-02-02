@@ -3,22 +3,25 @@
 	<tr valign="middle">
 
 
-		<td><img src="images/nav1Link_selected.gif" alt="" /><a
+		<td><a
 			href="admin.htm?type=home">Home</a></td>
 			
-		<td><img src="images/nav1Link_selected.gif" alt="" /><a
-			href="transactions.htm" target = "blank">View Transactions</a></td>
+		<td><a
+			href="transactions.htm" target = "blank">Transactions</a></td>
 			
-			<td><img src="images/nav1Link_selected.gif" alt="" /><a
+			<td><a
 			href="manageAudios.htm?type=getpage">Manage Audio''s</a></td>
 			
-			<td><img src="images/nav1Link_selected.gif" alt="" /><a
+			<td><a
 			href="manageTariffs.htm?type=getpage">Prices &amp; Tariffs</a></td>
 			
-				<td><img src="images/nav1Link_selected.gif" alt="" /><a
+				<td><a
 			href="admin.htm?type=help">Help &amp; Support</a></td>
 			
-			<td><img src="images/nav1Link_selected.gif" alt="" /><a
+				<td><a
+			href="userManagement.htm?option=getpage">User Management</a></td>
+			
+			<td><a
 			href="adminLogin.htm">Logout</a></td>
 			
 		

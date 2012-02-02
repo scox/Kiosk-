@@ -8,5 +8,4 @@ public interface AdminService {
 
 	public List<Transaction> getTransactions();
 
-
 }
