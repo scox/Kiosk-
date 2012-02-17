@@ -7,3 +7,4 @@ public interface LoginDBDao {
 	public User getAuthenticateUser(String usr, String pw);
 
 }
+ 

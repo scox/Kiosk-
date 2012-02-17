@@ -1,5 +1,6 @@
 package com.kiosk.web;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kiosk.dao.db.AudioDBDao;
 import com.kiosk.model.Audio;
 import com.kiosk.service.AudioService;
 import com.kiosk.service.TariffService;
@@ -36,6 +38,9 @@ public class AudioController {
 
 	@Autowired
 	private AudioService audioService;
+	
+	@Autowired
+	private AudioDBDao audioDao;
 
 	@Autowired
 	private TariffService tariffService;
@@ -79,9 +84,12 @@ public class AudioController {
 		ModelAndView mv = new ModelAndView();
 
 		if (type.equalsIgnoreCase("delete")) {
+			
+			Audio a = audioDao.getIndividualAudio(id);
 
 			mv.addObject("result", audioService.deleteAudio(id));
-
+			new File(a.getFilename()).delete();
+			
 		}
 
 		else {
@@ -109,13 +117,14 @@ public class AudioController {
 		htmlTable.setRow(htmlRow);
 		htmlRow.addColumn(buildLinkColumn("audioID", "Audio ID",
 				ColumnType.NORMAL));
+		htmlRow.addColumn(buildColumn("exhibitNumber", "Exhibit Number", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("language", "Language", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("level", "Level", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("dateCreated", "Date Created",
 				ColumnType.DATE));
 		htmlRow.addColumn(buildColumn("roomNo", "Room No", ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("title", "Title", ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("description", "Description",
+		htmlRow.addColumn(buildColumn("filename", "Filename", ColumnType.NORMAL));
+		htmlRow.addColumn(buildColumn("trackInfo", "Track Information",
 				ColumnType.NORMAL));
 
 		return htmlTable;

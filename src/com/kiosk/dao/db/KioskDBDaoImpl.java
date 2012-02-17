@@ -21,11 +21,11 @@ public class KioskDBDaoImpl extends BaseDao implements KioskDBDao {
 
 		return getJdbcTemplate()
 				.update("insert into Transaction(TPayment_ID,Pin,Customer_Name,Customer_Addr,Phone_No"
-						+ " ,Creation_Date,Cust_Language,Cust_Level,Payment_Status,PostCode,Email) Values (?,?,?,?,?,?,?,?,'Success',?,?)",
+						+ " ,Creation_Date,Cust_Language,Cust_Level,Payment_Status,PostCode,Email,Customer_Type,Member_Pin) Values (?,?,?,?,?,?,?,?,'Success',?,?,?,?)",
 						new Object[] { paymentID, t.getPin(), t.getName(),
 								t.getAddress(), t.getTelNo(), today,
 								t.getLanguage(), t.getLevel(), t.getPostCode(),
-								t.getEmail() });
+								t.getEmail(),t.getCustomerType(),t.getMemberPin() });
 
 	}
 
@@ -94,6 +94,15 @@ public class KioskDBDaoImpl extends BaseDao implements KioskDBDao {
 				"SELECT count(*) from transaction where pin = ?",
 				new Object[] { pin });
 
+	}
+
+	@Override
+	public int checkMemberPinExists(int memberPin) {
+		// TODO Auto-generated method stub
+		return getJdbcTemplate().queryForInt(
+				"SELECT count(*) from transaction where member_pin = ?",
+				
+				new Object[] { memberPin });
 	}
 
 }

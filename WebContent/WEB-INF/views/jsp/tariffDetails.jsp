@@ -37,63 +37,72 @@
 <body>
 
 	<c:choose>
-<c:when test="${(type) == 'getpage'}">
+		<c:when test="${(type) == 'getpage'}">
 
-<table id="stats">
+			<table id="stats">
 				<tr>
-		
-				<th>ID</th>
-				<th>Level</th>
-				<th>Price</th>	
+
+					<th>ID</th>
+					<th>Level</th>
+					<th>Price</th>
 				</tr>
-				
-				
-				
-			
-			<form action = "tariffDetails.htm">
-				<input type = "hidden" name = "type" value="doEdit" />
-			<tr>
-			
-			
-			
-			<td><c:out value="${tariff.tariffID}" /></td>
-			<td><input type = "text" name = "level" value = "<c:out value="${tariff.level}" />"/></td>
-			<td><input type = "text" name = "price" value = "<c:out value="${tariff.price}" />"/></td>
-			
-			</tr>
-		
-			
-					</table>	
-					<table border = "0">
-					<tr>
-					<td>	<input type="submit" name="update" value="Update"/>
-			</form></td>
-					<td>		<form action = "tariffDetails.htm">
-			<input type = "hidden" name = "type" value="delete" />
-			<input type = "hidden" name = "id" value="<c:out value="${tariff.tariffID}" />" />
-			<input type="submit" name="delete" value="Delete"/>
-			</form></td>
-					</tr>
-					</table>
-					
+
+
+
+
+				<form action="tariffDetails.htm">
+					<input type="hidden" name="type" value="doEdit" />
+				<tr>
+
+
+
+					<td><c:out value="${tariff.tariffID}" />
+					</td>
+					<td><input type="text" name="level"
+						value="<c:out value="${tariff.level}" />" />
+					</td>
+					<td><input type="text" name="price"
+						value="<c:out value="${tariff.price}" />" />
+					</td>
+
+				</tr>
+
+
+			</table>
+			<table border="0">
+				<tr>
+					<td><input type="submit" name="update" value="Update" />
+						</form>
+					</td>
+					<td>
+						<form action="tariffDetails.htm">
+							<input type="hidden" name="type" value="delete" /> <input
+								type="hidden" name="id"
+								value="<c:out value="${tariff.tariffID}" />" /> <input
+								type="submit" name="delete" value="Delete" />
+						</form>
+					</td>
+				</tr>
+			</table>
+
+		</c:when>
+		<c:otherwise>
+
+			<c:if test="${(type) == 'doEdit'||(type) == 'delete'}">
+				<c:choose>
+					<c:when test="${(result) == true}">
+Command performed successfully. Return <a href="admin.htm?type=home">home</a>
 					</c:when>
 					<c:otherwise>
-					
-					<c:if test="${(type) == 'doEdit'||(type) == 'delete'}">
-					<c:choose>
-<c:when test="${(result) == true}">
-Command performed successfully. Return <a
-			href="admin.htm?type=home">home</a>
-</c:when>
-<c:otherwise>
 Command failed! <a
-			href="tariffDetails.htm?type=getpage&id=<c:out value="${id}" />">Try again.</a>
-</c:otherwise>
-</c:choose>
-					</c:if>
-					
-					
+							href="tariffDetails.htm?type=getpage&id=<c:out value="${id}" />">Try
+							again.</a>
 					</c:otherwise>
-					</c:choose>
+				</c:choose>
+			</c:if>
+
+
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

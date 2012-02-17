@@ -17,18 +17,15 @@ Transaction Confirmation</title>
 
 </head>
 
+<body onload="redirTimer()">  
 
-
-<script LANGUAGE="JavaScript">
-
+<script language="javascript">
 redirTime = "15000";
 redirURL = "index.jsp";
 function redirTimer() { self.setTimeout("self.location.href = redirURL;",redirTime); }
 //  End -->
 </script>
 
-
-<body onLoad="redirTimer()">  
 <table width = "1000px" >
 <tr>
 <td width = "25%">
@@ -47,6 +44,11 @@ function redirTimer() { self.setTimeout("self.location.href = redirURL;",redirTi
 <c:when test="${(uploaded.result) == true}">
 
 <p> <font size="5" face="courier" > PIN = <c:out value="${uploaded.pin}" /></font>  </p>
+
+<c:if test="${(uploaded.customerType) == 'Group'}">
+<br/>
+<p> <font size="5" face="courier" > Member PIN = <c:out value="${uploaded.memberPin}" /></font>  </p>
+</c:if>
 <br></br>
 <p>Please keep this for future reference.</p>
 <br></br>

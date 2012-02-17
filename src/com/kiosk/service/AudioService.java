@@ -1,5 +1,6 @@
 package com.kiosk.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.kiosk.model.Audio;
@@ -14,8 +15,6 @@ public interface AudioService {
 
 	public boolean deleteAudio(int id);
 
-	public boolean editAudio(Audio a);
-
-	public byte[] getMP3(int audioID);
+	public byte[] getMP3(String filePath) throws IOException;
 
 }

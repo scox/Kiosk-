@@ -29,7 +29,7 @@ public class PlayAudioController {
 			HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "audioID") int id) throws IOException {
 
-		byte[] bin = audioService.getMP3(id);
+		byte[] bin = audioService.getMP3(audioService.getIndividualAudio(id).getFilename());
 
 		// OutputStream ops = response.getOutputStream();
 		response.setContentType("audio/mpeg");

@@ -26,20 +26,50 @@ public class KioskServiceImpl implements KioskService {
 
 		Result result = new Result();
 		result.setResult(false);
-		t.generatePin();
+		result.setCustomerType(t.getCustomerType());
+		t.setPin(t.generatePin());
 
 		while (pinExists == true) {
 
 			if (kioskDBDao.checkPinExists(t.getPin()) == 0) {
 				System.out.println("unique pin");
 				pinExists = false;
+				
+				
+				
 			} else {
-				System.out.println("pin exists");
-				t.generatePin();
+				System.out.println("Pin exists");
+				t.setPin(t.generatePin());
 
 			}
 
 		}
+		
+		
+		if(t.getCustomerType().equalsIgnoreCase("GROUP")){
+			pinExists = true;
+			
+			t.setMemberPin(t.generatePin());
+			
+			while (pinExists == true) {
+
+				if (kioskDBDao.checkMemberPinExists(t.getMemberPin()) == 0) {
+					result.setMemberPin(t.getMemberPin());
+					pinExists = false;
+					
+					
+					
+				} else {
+					System.out.println("Pin exists");
+					t.setMemberPin(t.generatePin());
+
+				}
+
+			}
+			
+			
+		}
+		
 
 		result.setPin(t.getPin());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

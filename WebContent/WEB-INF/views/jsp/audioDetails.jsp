@@ -37,6 +37,12 @@
 
 <title>Audio Results</title>
 
+        <script type="text/javascript" language="javascript">
+        function confirmDelete()
+        {return confirm('Are you sure you want to delete this?');}
+        </script>
+
+
 </head>
 <body>
 	<table>
@@ -46,7 +52,7 @@
 	</table>
 
 	<c:choose>
-		<c:when test="${(type) == 'doEdit' || (type) == 'delete'}">
+		<c:when test="${(type) == 'delete'}">
 
 			<c:choose>
 				<c:when test="${(result) == true}">
@@ -70,8 +76,8 @@ Command failed! <a
 				<tr>
 
 					<th>ID</th>
-					<th>Title</th>
-					<th>Description</th>
+					<th>Exhibit Number</th>
+					<th>Track Info</th>
 					<th>Level</th>
 					<th>Language</th>
 					<th>Room No</th>
@@ -90,9 +96,9 @@ Command failed! <a
 
 						<td><c:out value="${audio.audioID}" />
 						</td>
-						<td><c:out value="${audio.title}"/>
+						<td><c:out value="${audio.exhibitNumber}"/>
 						</td>
-						<td><c:out value="${audio.description}" />
+						<td><c:out value="${audio.trackInfo}" />
 						</td>
 
 						<td><c:out value="${audio.level}" />
@@ -115,10 +121,12 @@ Command failed! <a
 			<table border="0">
 				<tr>
 					<td>
-						<form action="audioDetails.htm">
+					
+					
+						<form action="audioDetails.htm" onsubmit='return confirmDelete()'>
 							<input type="hidden" name="type" value="delete" /> <input
 								type="hidden" name="id" value="<c:out value="${id}" />" /> <input
-								type="submit" name="delete" value="Delete" />
+								type="submit" name="delete" value="Delete"/>
 						</form>
 					</td>
 				</tr>

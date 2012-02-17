@@ -24,6 +24,26 @@ public class Transaction {
 	private Date createdOn;
 	private String paymentStatus;
 	private String Email;
+	private String customerType;
+	private int memberPin;
+	
+	
+	
+	public String getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
+	}
+
+	public int getMemberPin() {
+		return memberPin;
+	}
+
+	public void setMemberPin(int memberPin) {
+		this.memberPin = memberPin;
+	}
 
 	public String getEmail() {
 		return Email;
@@ -161,12 +181,12 @@ public class Transaction {
 		this.pin = pin;
 	}
 
-	public void generatePin() {
+	public int generatePin() {
 
 		Random r = new Random();
-		this.pin = r.nextInt(Constants.RANDOM_HIGH - Constants.RANDOM_LOW)
-				+ Constants.RANDOM_LOW;
 
+		return r.nextInt(Constants.RANDOM_HIGH - Constants.RANDOM_LOW)
+		+ Constants.RANDOM_LOW;
 	}
 
 }

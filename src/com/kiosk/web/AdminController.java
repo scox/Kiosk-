@@ -128,7 +128,7 @@ public class AdminController {
 		htmlRow.addColumn(buildColumn("telNo", "Phone No", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("language", "Language", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("level", "Level", ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("price", "Transaction ID",
+		htmlRow.addColumn(buildColumn("price", "Price",
 				ColumnType.NUMBER));
 		htmlRow.addColumn(buildColumn("paymentStatus", "Payment Status",
 				ColumnType.NORMAL));

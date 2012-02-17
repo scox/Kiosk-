@@ -19,7 +19,6 @@
 <body>
 <div id="document">
 
-
 			<%@ include file="/css/head.jsp" %>
 			<%@ include file="/css/menu.jsp" %>
 <table cellpadding="0" cellspacing="0" border="0">
@@ -28,7 +27,17 @@
 		<td>
 
 		<table cellspacing="0" cellpadding="0" border="0" width = "770">
+			
+				<tr>	
+				<td align = "center">
+				<br/>
+			<form>
+<input type="button" value="Emergency Stop" onclick="window.location.href='emergencyStop.htm'"/> 
+</form>
+			</td>
+			</tr>
 			<tr>
+	
 
 				<td align = "center">
 				
@@ -59,10 +68,6 @@
 
 		</table>
 
-
-		</td>
-	</tr>
-</table>
 
 </div>
 </body>

@@ -24,8 +24,8 @@
 
 function ValData(){  
   
-    var title = document.getElementById('title').value
-    var description = document.getElementById('description').value
+    var exNo = document.getElementById('exhibitNumber').value
+    var tr = document.getElementById('trackInfo').value
     var level = document.getElementById('level').value
     var language = document.getElementById('language').value
     var file = document.getElementById('audio').value
@@ -37,13 +37,13 @@ function ValData(){
     	}
     
    
-if(title == ''){  
-alert('please enter a title');  
+if(exNo == ''){  
+alert('please enter an exhibit number');  
 return false;           
 }
     
-    if(description == ''){  
-    	alert('please enter a description');  
+    if(tr == ''){  
+    	alert('please enter the track information');  
     	return false;           
     	}
     
@@ -112,12 +112,6 @@ function isValidNumbers(evt) {
 
 	</script>
 
-
-
-
-	
-
-</script>
  
 <style type="text/css">
 #stats {
@@ -207,13 +201,13 @@ function onInvokeAction(id) {
 	<input type = "hidden" name = "subtype" value="doAdd" />
 <table>
 <tr>
-<td>Title</td>
+<td>Exhibit Number</td>
 
-<td><form:input path="title" id="title" type="text"/></td>
+<td><form:input path="exhibitNumber" id="exhibitNumber" type="text"/></td>
 </tr>
 <tr>
-<td>Description</td>		
-<td><form:input path="description" id="description" type="text"/></td>	
+<td>Track Information</td>		
+<td><form:input path="trackInfo" id="trackInfo" type="text"/></td>	
 
 </tr>
 <tr>

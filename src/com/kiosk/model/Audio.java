@@ -11,11 +11,38 @@ public class Audio {
 	private String level;
 	private String language;
 	private Blob mp3;
-	private String title;
-	private String description;
+	private String filename;
+	private int exhibitNumber;
+	private String trackInfo;
 	private int roomNo;
 	private Date dateCreated;
 	private CommonsMultipartFile audio;
+	
+	
+	
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public int getExhibitNumber() {
+		return exhibitNumber;
+	}
+
+	public void setExhibitNumber(int exhibitNumber) {
+		this.exhibitNumber = exhibitNumber;
+	}
+
+	public String getTrackInfo() {
+		return trackInfo;
+	}
+
+	public void setTrackInfo(String trackInfo) {
+		this.trackInfo = trackInfo;
+	}
 
 	public CommonsMultipartFile getAudio() {
 		return audio;
@@ -65,22 +92,7 @@ public class Audio {
 		this.mp3 = mp3;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
+	
 	public int getRoomNo() {
 		return roomNo;
 	}

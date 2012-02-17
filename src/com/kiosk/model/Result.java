@@ -4,6 +4,25 @@ public class Result {
 
 	public boolean result;
 	public int pin;
+	public int memberPin;
+	public String customerType;
+
+	
+	public String getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(String customerType) {
+		this.customerType = customerType;
+	}
+
+	public int getMemberPin() {
+		return memberPin;
+	}
+
+	public void setMemberPin(int memberPin) {
+		this.memberPin = memberPin;
+	}
 
 	public boolean isResult() {
 		return result;

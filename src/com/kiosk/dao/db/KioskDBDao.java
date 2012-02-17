@@ -19,4 +19,5 @@ public interface KioskDBDao {
 	public int getLastPaymentID();
 
 	public int checkPinExists(int pin);
+	public int checkMemberPinExists(int pin);
 }

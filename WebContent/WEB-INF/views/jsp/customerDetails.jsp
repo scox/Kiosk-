@@ -133,13 +133,11 @@ function isValidNumbers(evt) {
 
 
 
-		<header id="header" class="info">
 		<h2>
 			<img src="images/logo.bmp" alt="" /> <br></br> &nbsp; &nbsp; Audio
 			Transaction Form <br></br>
 		</h2>
 		<div></div>
-		</header>
 
 
 
@@ -219,7 +217,17 @@ function isValidNumbers(evt) {
 											path="email" id="email" type="text" size="18"
 											tabindex="1" maxlength ="30" /> </span>
 								</td>
+<td><label class="desc"> Customer Type </label> <form:select
+										path="customerType" id="customerType">
+										<form:option value="--SELECT--" />
+										
+											<form:option value="Individual" />
+											<form:option value="Group" />
 
+										
+e
+									</form:select>
+								</td>
 							</tr>
 
 							<tr>
