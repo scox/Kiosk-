@@ -1,5 +1,10 @@
 package com.kiosk.model;
 
+/**
+ * Author: Sam Cox Date: 06/01/2012 Tariff.Java: Java bean. Used to store tariff
+ * details
+ */
+
 public class Tariff {
 
 	private int tariffID;

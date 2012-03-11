@@ -1,5 +1,11 @@
 package com.kiosk.model;
 
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * Transaction.Java: Java bean.  Used to store transaction details
+ */
+
 import java.util.Date;
 import java.util.Random;
 
@@ -26,9 +32,7 @@ public class Transaction {
 	private String Email;
 	private String customerType;
 	private int memberPin;
-	
-	
-	
+
 	public String getCustomerType() {
 		return customerType;
 	}
@@ -186,7 +190,7 @@ public class Transaction {
 		Random r = new Random();
 
 		return r.nextInt(Constants.RANDOM_HIGH - Constants.RANDOM_LOW)
-		+ Constants.RANDOM_LOW;
+				+ Constants.RANDOM_LOW;
 	}
 
 }

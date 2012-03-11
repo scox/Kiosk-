@@ -9,6 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import com.kiosk.model.Audio;
 
+/**
+ * Author: Sam Cox Date: 06/01/2012 AudioDBDaoImpl.Java: Implementation of
+ * methods requiring database queries for audio information
+ */
+
 @Repository
 public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
 
@@ -20,7 +25,7 @@ public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
 		return getJdbcTemplate()
 				.query("SELECT audio_id,a_level,a_language,filename,date_created,room_no,exhibit_no,track_info from Audio order by audio_id asc",
 						new RowMapper<Audio>() {
- 
+
 							public Audio mapRow(ResultSet rs, int rowNum)
 									throws SQLException {
 
@@ -33,7 +38,7 @@ public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
 								a.setFilename(rs.getString("filename"));
 								a.setExhibitNumber(rs.getInt("exhibit_no"));
 								a.setTrackInfo(rs.getString("track_info"));
-								
+
 								return a;
 
 							}
@@ -77,13 +82,13 @@ public class AudioDBDaoImpl extends BaseDao implements AudioDBDao {
 
 	@Override
 	public int addAudio(Audio a, String today) {
-	
+
 		return getJdbcTemplate()
 				.update("insert into audio (a_level, filename,track_info,date_created,a_language,room_no,exhibit_no)"
 						+ " VALUES (?,?,?,?,?,?,?)",
 						new Object[] { a.getLevel(), a.getFilename(),
 								a.getTrackInfo(), today, a.getLanguage(),
-								a.getRoomNo(),a.getExhibitNumber()});
+								a.getRoomNo(), a.getExhibitNumber() });
 	}
 
 	@Override

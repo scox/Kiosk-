@@ -1,9 +1,12 @@
 package com.kiosk.web;
 
 import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.jmesa.model.TableModel;
 import org.jmesa.view.component.Column;
 import org.jmesa.view.component.Table;
@@ -21,30 +24,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.kiosk.dao.db.AdminDBDao;
+import com.kiosk.dao.db.LoginDBDao;
 import com.kiosk.model.Transaction;
 import com.kiosk.model.User;
-import com.kiosk.service.AdminService;
-import com.kiosk.service.LoginService;
+
+/**
+ * Author: Sam Cox Date: 06/01/2012 AddAudioController.Java: This class provides the presentation layer for 
+ * admin requests made by the client
+ */
 
 @Controller
 @SessionAttributes
 public class AdminController {
 
 	@Autowired
-	private AdminService adminService;
+	private AdminDBDao adminDBDao;
 	@Autowired
-	private LoginService loginService;
-
-	public static User user;
+	private LoginDBDao loginDBDao;
 
 	@RequestMapping("/adminLogin.htm")
 	@ModelAttribute
-	public void getAdminLogin(ModelMap model) {
+	public void getAdminLogin(ModelMap model, HttpServletRequest request) {
 
-		user = null;
+		// Safely end the session and log user out
+		HttpSession session = request.getSession(false);
+		if (session == null) {
+			request.getSession().invalidate();
+		}
 
 	}
 
+	// login administrator and direct to homepage
 	@RequestMapping("/admin.htm")
 	@ModelAttribute
 	public ModelAndView getAdminLogin(ModelMap model,
@@ -56,32 +68,44 @@ public class AdminController {
 
 			String password = request.getParameter("password");
 			String username = request.getParameter("username");
-			user = loginService.getAuthenticateUser(username, password);
+			User user = loginDBDao.getAuthenticateUser(username, password);
 
+			// if user exists set up a session and set the user for the session
 			if (user != null) {
+				HttpSession session = request.getSession(true);
 				mv.addObject("user", user);
+				session.setAttribute("user", user);
 				type = "home";
 				mv.setViewName("admin");
 
 			}
 
 			else {
-
+				// user does not exist
 				mv.setViewName("error");
 
 			}
 		}
 
 		else {
-			mv.setViewName("admin");
+
+			// return homepage if session exists else direct to login
+
+			HttpSession session = request.getSession(false);
+			if (session != null) {
+				mv.setViewName("admin");
+			} else {
+				mv.setViewName("adminLogin");
+			}
 
 		}
 
-		System.out.println(type);
 		mv.addObject("type", type);
 		return mv;
 
 	}
+
+	// get all transactions and present to the administrator
 
 	@RequestMapping("/transactions.htm")
 	@ModelAttribute
@@ -89,8 +113,7 @@ public class AdminController {
 			HttpServletResponse response) throws ServletException {
 
 		ModelAndView mv = new ModelAndView();
-
-		List<Transaction> trans = adminService.getTransactions();
+		List<Transaction> trans = adminDBDao.getTransactions();
 
 		TableModel tableModel = new TableModel("Transactions", request,
 				response);
@@ -98,7 +121,6 @@ public class AdminController {
 		tableModel.setStateAttr("restore");
 
 		// Web Option
-
 		tableModel.setTable(getTable());
 		String html = tableModel.render();
 		request.setAttribute("output", html);
@@ -108,7 +130,7 @@ public class AdminController {
 
 	}
 
-	// Set up web view
+	// Set up the web view using jmesa table rendering API
 
 	private Table getTable() {
 
@@ -128,12 +150,13 @@ public class AdminController {
 		htmlRow.addColumn(buildColumn("telNo", "Phone No", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("language", "Language", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("level", "Level", ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("price", "Price",
-				ColumnType.NUMBER));
+		htmlRow.addColumn(buildColumn("price", "Price", ColumnType.NUMBER));
 		htmlRow.addColumn(buildColumn("paymentStatus", "Payment Status",
 				ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("createdOn", "Date Created",
 				ColumnType.DATE));
+		htmlRow.addColumn(buildColumn("customerType", "Customer Type",
+				ColumnType.NORMAL));
 
 		return htmlTable;
 	}

@@ -4,48 +4,59 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.kiosk.model.Tariff;
 import com.kiosk.model.Transaction;
 
+/**
+ * Author: Sam Cox Date: 06/01/2012 KioskDBDaoImpl.Java: Implementation of
+ * methods requiring database queries related to processing transactions and any
+ * queries relating to the kiosk component
+ */
+
 @Repository
 public class KioskDBDaoImpl extends BaseDao implements KioskDBDao {
 
-	// private static final Logger LOG = Logger.getLogger(KioskDBDaoImpl.class);
+	private static final Logger LOG = Logger.getLogger(KioskDBDaoImpl.class);
 
 	@Override
 	public int uplaodTransactionRecord(Transaction t, int paymentID,
 			String today) {
 
+		LOG.info("Insert transaction");
 		return getJdbcTemplate()
 				.update("insert into Transaction(TPayment_ID,Pin,Customer_Name,Customer_Addr,Phone_No"
 						+ " ,Creation_Date,Cust_Language,Cust_Level,Payment_Status,PostCode,Email,Customer_Type,Member_Pin) Values (?,?,?,?,?,?,?,?,'Success',?,?,?,?)",
 						new Object[] { paymentID, t.getPin(), t.getName(),
 								t.getAddress(), t.getTelNo(), today,
 								t.getLanguage(), t.getLevel(), t.getPostCode(),
-								t.getEmail(),t.getCustomerType(),t.getMemberPin() });
+								t.getEmail(), t.getCustomerType(),
+								t.getMemberPin() });
 
 	}
 
 	public int uploadPaymentRecord(Transaction t) {
 
+		// Convert card expiry month and year to date
 		StringBuilder sb = new StringBuilder();
-
 		sb.append(t.getYear());
 		sb.append("-");
 		sb.append(t.getMonth());
 		sb.append("-");
 		sb.append("01");
 
-		return getJdbcTemplate()
-				.update("insert into Payment(Card_Type,Payment_Amount,Card_No ,Sec_Code ,Exp_Date) Values (?,?,?,?,?)",
-						new Object[] { t.getCardType(), t.getPrice(),
-								t.getCardNo(), t.getSecCode(), sb.toString() });
+		return getJdbcTemplate().update(
+				"insert into Payment(Card_Type,Payment_Amount,Card_No ,Sec_Code ,Exp_Date) "
+						+ "Values (?,?,?,?,?)",
+				new Object[] { t.getCardType(), t.getPrice(), t.getCardNo(),
+						t.getSecCode(), sb.toString() });
 
 	}
 
+	// get tariff levels i.e Beginner,Advanced etc.
 	public List<Tariff> getLevels() {
 
 		return getJdbcTemplate()
@@ -64,6 +75,7 @@ public class KioskDBDaoImpl extends BaseDao implements KioskDBDao {
 
 	}
 
+	// get tariff languages i.e English, French etc
 	public List<String> getLanguages() {
 
 		return getJdbcTemplate().query(
@@ -80,7 +92,6 @@ public class KioskDBDaoImpl extends BaseDao implements KioskDBDao {
 
 	@Override
 	public int getLastPaymentID() {
-		// TODO Auto-generated method stub
 		return getJdbcTemplate()
 				.queryForInt(
 						"SELECT Payment_ID FROM Payment ORDER BY Payment_ID DESC LIMIT 1");
@@ -89,7 +100,6 @@ public class KioskDBDaoImpl extends BaseDao implements KioskDBDao {
 
 	@Override
 	public int checkPinExists(int pin) {
-		// TODO Auto-generated method stub
 		return getJdbcTemplate().queryForInt(
 				"SELECT count(*) from transaction where pin = ?",
 				new Object[] { pin });
@@ -98,10 +108,8 @@ public class KioskDBDaoImpl extends BaseDao implements KioskDBDao {
 
 	@Override
 	public int checkMemberPinExists(int memberPin) {
-		// TODO Auto-generated method stub
 		return getJdbcTemplate().queryForInt(
 				"SELECT count(*) from transaction where member_pin = ?",
-				
 				new Object[] { memberPin });
 	}
 

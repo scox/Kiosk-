@@ -5,14 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kiosk.dao.db.UserManagementDao;
+import com.kiosk.dao.db.UserManagementDBDao;
 import com.kiosk.model.User;
-
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * UserManagementServiceImpl.Java:  This class contains the business logic for the user management component
+ */
 @Service
 public class UserManagementServiceImpl implements UserManagementService {
 
 	@Autowired
-	private UserManagementDao userManagementDao;
+	private UserManagementDBDao userManagementDao;
 
 	@Override
 	public boolean addUser(String username, String password, int access) {

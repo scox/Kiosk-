@@ -10,8 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.kiosk.service.LoginService;
+import com.kiosk.dao.db.LoginDBDao;
+import com.kiosk.model.User;
 import com.kiosk.service.UserManagementService;
+
+/**
+ * Author: Sam Cox Date: 06/01/2012 UserManagementController.Java: This class
+ * handles all user management activities. These are add user delete user,
+ * change password and change access.
+ */
 
 @Controller
 @SessionAttributes
@@ -20,17 +27,20 @@ public class UserManagementController {
 	@Autowired
 	private UserManagementService userManagementService;
 	@Autowired
-	private LoginService loginService;
+	private LoginDBDao loginDBDao;
 
 	// private static final Logger LOG = Logger
 	// .getLogger(UserManagementController.class);
 
-	// Views and mapping
+	// handle presentation and direct to appropriate view based on user
+	// management activity requested
 
 	@RequestMapping("/userManagement.htm")
 	@ModelAttribute
 	public void userManagement(ModelMap model, HttpServletRequest request,
 			@RequestParam(value = "option") String option) {
+
+		User user = (User) request.getSession().getAttribute("user");
 
 		if (option.equalsIgnoreCase("doAddUser")) {
 
@@ -59,8 +69,8 @@ public class UserManagementController {
 			model.put("updated", updated);
 
 			if (updated == true) {
-				AdminController.user = loginService.getAuthenticateUser(
-						AdminController.user.getUsername(), newPassword);
+				user = loginDBDao.getAuthenticateUser(user.getUsername(),
+						newPassword);
 			}
 
 		}
@@ -71,7 +81,7 @@ public class UserManagementController {
 					Integer.parseInt(request.getParameter("access"))));
 		}
 
-		Navigation.setNavigation(model, AdminController.user);
+		Navigation.setNavigation(model, user);
 		model.put("users", userManagementService.getUser());
 		model.put("option", option);
 	}

@@ -1,6 +1,7 @@
 package com.kiosk.web;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,17 +21,22 @@ import org.jmesa.view.html.editor.HtmlCellEditor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kiosk.dao.db.AudioDBDao;
+import com.kiosk.dao.db.TariffDBDao;
 import com.kiosk.model.Audio;
 import com.kiosk.service.AudioService;
-import com.kiosk.service.TariffService;
+
+/**
+ * Author: Sam Cox Date: 06/01/2012 AudioController.Java: This class deals with
+ * the audio functionality. It deals with requests from the client to add,
+ * delete and play audios and creates the presentation layer.
+ */
 
 @Controller
 @SessionAttributes
@@ -38,12 +44,24 @@ public class AudioController {
 
 	@Autowired
 	private AudioService audioService;
-	
 	@Autowired
-	private AudioDBDao audioDao;
+	private TariffDBDao tariffDBDao;
 
-	@Autowired
-	private TariffService tariffService;
+	@RequestMapping("playAudio.htm")
+	@ModelAttribute
+	public void playAudio(Audio uploadAudio, BindingResult result,
+			HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "audioID") int id) throws IOException {
+
+		byte[] bin = audioService.getMP3(audioService.getIndividualAudio(id)
+				.getFilename());
+
+		response.setContentType("audio/mpeg");
+		response.setHeader("Content-disposition", "inline; filename=");
+		response.setContentLength(bin.length);
+		response.getOutputStream().write(bin, 0, bin.length);
+
+	}
 
 	@RequestMapping("/manageAudios.htm")
 	@ModelAttribute
@@ -53,10 +71,9 @@ public class AudioController {
 
 		if (type.equalsIgnoreCase("getAdd")) {
 
-			model.put("level", tariffService.getTariffs());
+			model.put("level", tariffDBDao.getTariffs());
 		}
 		List<Audio> audio = audioService.getAudio();
-
 		TableModel tableModel = new TableModel("Audios", request, response);
 		tableModel.setItems(audio);
 		tableModel.setStateAttr("restore");
@@ -71,9 +88,6 @@ public class AudioController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public void showForm() {
-	}
 
 	@RequestMapping("/audioDetails.htm")
 	@ModelAttribute
@@ -83,26 +97,45 @@ public class AudioController {
 
 		ModelAndView mv = new ModelAndView();
 
+		// delete selected audio
 		if (type.equalsIgnoreCase("delete")) {
-			
-			Audio a = audioDao.getIndividualAudio(id);
 
+			Audio a = audioService.getIndividualAudio(id);
 			mv.addObject("result", audioService.deleteAudio(id));
 			new File(a.getFilename()).delete();
-			
+
 		}
 
+		// display specific audio
 		else {
 			mv.addObject("audio", audioService.getIndividualAudio(id));
-			System.out.println(audioService.getIndividualAudio(id)
-					.getLanguage() + " l");
-			mv.addObject("level", tariffService.getTariffs());
+			mv.addObject("level", tariffDBDao.getTariffs());
 			mv.addObject("command", new Audio());
 		}
 
 		mv.addObject("id", id);
 		mv.addObject("type", type);
 		mv.setViewName("audioDetails");
+
+		return mv;
+
+	}
+
+	// Add an audio
+
+	@RequestMapping("addAudio.htm")
+	@ModelAttribute
+	public ModelAndView addAudio(Audio uploadAudio, BindingResult result,
+			HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "type") String type,
+			@RequestParam(value = "subtype") String subtype) {
+
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("added", audioService.addAudio(uploadAudio));
+		mv.addObject("type", type);
+		mv.addObject("subtype", subtype);
+		mv.addObject("command", new Audio());
+		mv.setViewName("manageAudios");
 
 		return mv;
 
@@ -117,7 +150,8 @@ public class AudioController {
 		htmlTable.setRow(htmlRow);
 		htmlRow.addColumn(buildLinkColumn("audioID", "Audio ID",
 				ColumnType.NORMAL));
-		htmlRow.addColumn(buildColumn("exhibitNumber", "Exhibit Number", ColumnType.NORMAL));
+		htmlRow.addColumn(buildColumn("exhibitNumber", "Exhibit Number",
+				ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("language", "Language", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("level", "Level", ColumnType.NORMAL));
 		htmlRow.addColumn(buildColumn("dateCreated", "Date Created",

@@ -12,6 +12,12 @@ import com.kiosk.model.Tariff;
 import com.kiosk.model.Result;
 import com.kiosk.model.Transaction;
 
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * Constants.Java:  This class contains the business logic for the kiosk.  All logic required to purchase a 
+ * playback unit.
+ */
 @Service
 public class KioskServiceImpl implements KioskService {
 
@@ -20,8 +26,7 @@ public class KioskServiceImpl implements KioskService {
 
 	@Override
 	public Result uploadTransaction(Transaction t) {
-		// TODO Auto-generated method stub
-
+	
 		boolean pinExists = true;
 
 		Result result = new Result();
@@ -32,44 +37,41 @@ public class KioskServiceImpl implements KioskService {
 		while (pinExists == true) {
 
 			if (kioskDBDao.checkPinExists(t.getPin()) == 0) {
-				System.out.println("unique pin");
+				//Unique pin number created
 				pinExists = false;
+
+			}
+			
+			//Pin exists. Generate new pin
+			else {
 				
-				
-				
-			} else {
-				System.out.println("Pin exists");
 				t.setPin(t.generatePin());
 
 			}
 
 		}
-		
-		
-		if(t.getCustomerType().equalsIgnoreCase("GROUP")){
+
+		if (t.getCustomerType().equalsIgnoreCase("GROUP")) {
 			pinExists = true;
-			
+
 			t.setMemberPin(t.generatePin());
-			
+
 			while (pinExists == true) {
 
 				if (kioskDBDao.checkMemberPinExists(t.getMemberPin()) == 0) {
+					//Unique pin
 					result.setMemberPin(t.getMemberPin());
 					pinExists = false;
-					
-					
-					
+
 				} else {
-					System.out.println("Pin exists");
+					//Group Pin Exists. Retry
 					t.setMemberPin(t.generatePin());
 
 				}
 
 			}
-			
-			
+
 		}
-		
 
 		result.setPin(t.getPin());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

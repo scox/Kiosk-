@@ -1,5 +1,10 @@
 package com.kiosk.model;
 
+/**
+ * Author: Sam Cox Date: 06/01/2012 User.Java: Java bean. Used to store user
+ * details.
+ */
+
 public class User {
 
 	private int userID;

@@ -8,7 +8,11 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.kiosk.model.User;
-
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * LoginDBDaoImpl.Java:  Implementation of methods related to the login process of an administrator
+ */
 @Repository
 public class LoginDBDaoImpl extends BaseDao implements LoginDBDao {
 

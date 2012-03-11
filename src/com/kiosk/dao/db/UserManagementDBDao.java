@@ -4,7 +4,12 @@ import java.util.List;
 
 import com.kiosk.model.User;
 
-public interface UserManagementDao {
+/**
+ * Author: Sam Cox Date: 06/01/2012 UserManagementDBDao.Java: User management
+ * interface to group related methods
+ */
+
+public interface UserManagementDBDao {
 
 	public int addUser(String username, String password, int access);
 

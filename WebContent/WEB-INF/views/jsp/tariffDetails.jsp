@@ -52,6 +52,7 @@
 
 				<form action="tariffDetails.htm">
 					<input type="hidden" name="type" value="doEdit" />
+					<input type="hidden" name="id" value="<c:out value="${tariff.tariffID}" />" />
 				<tr>
 
 

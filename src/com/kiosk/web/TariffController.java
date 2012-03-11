@@ -21,7 +21,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kiosk.dao.db.TariffDBDao;
 import com.kiosk.service.TariffService;
+
+/**
+ * Author: Sam Cox Date: 06/01/2012 TariffController.Java: This class class
+ * handles all functionality related to the price of the handset. The
+ * administrator can add new tariffs or update and delete existing ones.
+ */
 
 @Controller
 @SessionAttributes
@@ -29,6 +36,8 @@ public class TariffController {
 
 	@Autowired
 	private TariffService tariffService;
+	@Autowired
+	private TariffDBDao tariffDBDao;
 
 	@RequestMapping("/manageTariffs.htm")
 	@ModelAttribute
@@ -55,7 +64,7 @@ public class TariffController {
 
 		else if (type.equalsIgnoreCase("getpage")) {
 			TableModel tableModel = new TableModel("Tariffs", request, response);
-			tableModel.setItems(tariffService.getTariffs());
+			tableModel.setItems(tariffDBDao.getTariffs());
 			tableModel.setStateAttr("restore");
 
 			// Web Option
@@ -80,15 +89,21 @@ public class TariffController {
 			@RequestParam(value = "type") String type) {
 
 		ModelAndView mv = new ModelAndView();
+
+		// process users request. can be edit, delete or view individual tariff
+
 		if (type.equalsIgnoreCase("getEdit") || type.equalsIgnoreCase("doEdit")
 				|| type.equalsIgnoreCase("delete")) {
 			boolean result = false;
+
+			// administrator request to delete tariff
 			if (type.equalsIgnoreCase("delete")) {
 
 				result = tariffService.deleteTariff(id);
 
 			}
 
+			// administrator edits tariff details. return status to view
 			else if (type.equalsIgnoreCase("doEdit")) {
 
 				result = tariffService.updateTariff(id,
@@ -102,7 +117,7 @@ public class TariffController {
 
 		else {
 
-			mv.addObject("tariff", tariffService.getIndividualTariffs(id));
+			mv.addObject("tariff", tariffDBDao.getIndividualTariff(id));
 
 		}
 
@@ -114,7 +129,7 @@ public class TariffController {
 
 	}
 
-	// Set up web view
+	// Set up web view with jmesa table rendering API
 
 	private Table getTable(String type) {
 
@@ -174,6 +189,7 @@ public class TariffController {
 		NUMBER, NORMAL, OPTION;
 	}
 
+	// set hyperlink for administrator to select individual tariff from
 	public CellEditor setLink(final String type) {
 
 		return new CellEditor() {

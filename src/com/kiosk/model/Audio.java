@@ -1,25 +1,26 @@
 package com.kiosk.model;
 
-import java.sql.Blob;
 import java.util.Date;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+/**
+ * Author: Sam Cox Date: 06/01/2012 Audio.Java: Java bean. Used to store audio
+ * details
+ */
 
 public class Audio {
 
 	private int audioID;
 	private String level;
 	private String language;
-	private Blob mp3;
 	private String filename;
 	private int exhibitNumber;
 	private String trackInfo;
 	private int roomNo;
 	private Date dateCreated;
 	private CommonsMultipartFile audio;
-	
-	
-	
+
 	public String getFilename() {
 		return filename;
 	}
@@ -84,15 +85,6 @@ public class Audio {
 		this.language = language;
 	}
 
-	public Blob getMp3() {
-		return mp3;
-	}
-
-	public void setMp3(Blob mp3) {
-		this.mp3 = mp3;
-	}
-
-	
 	public int getRoomNo() {
 		return roomNo;
 	}

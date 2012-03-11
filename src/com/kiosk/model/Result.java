@@ -1,5 +1,10 @@
 package com.kiosk.model;
 
+/**
+ * Author: Sam Cox Date: 06/01/2012 Result.Java: Java bean. Used to provide
+ * transaction status
+ */
+
 public class Result {
 
 	public boolean result;
@@ -7,7 +12,6 @@ public class Result {
 	public int memberPin;
 	public String customerType;
 
-	
 	public String getCustomerType() {
 		return customerType;
 	}

@@ -1,4 +1,34 @@
 <html>
+<script type="text/javascript">
+
+
+function ValForm(){  
+   
+    var username = document.getElementById('username').value
+    var password = document.getElementById('password').value
+    
+    if(username == ''){  
+    	alert('please enter your username');  
+    	return false;           
+    	}
+    
+    if(password == ''){  
+    	alert('please enter your password');  
+    	return false;           
+    	}
+  
+    
+    
+    else return true;  
+
+  }  
+
+
+	
+
+</script>
+
+
 <body>
 <font face="verdana,arial" size=-1>
 	<center>
@@ -21,22 +51,21 @@
 						</tr>
 						<tr>
 							<td bgcolor="white" style="padding: 5"><br>
-								<form method="post" action="admin.htm?type=login"
-									name="aform">
-									<input type="hidden" name="action" value="login"> <input
-										type="hidden" name="hide" value="">
+								<form name="form" action="admin.htm?type=login"
+									 onsubmit="return ValForm()" method="post" >
+									
 									<center>
 										<table>
 											<tr>
 												<td><font face="verdana,arial" size=-1>Username:</font>
 												</td>
-												<td><input type="text" name="username">
+												<td><input type="text" name="username" id = "username"> 
 												</td>
 											</tr>
 											<tr>
 												<td><font face="verdana,arial" size=-1>Password:</font>
 												</td>
-												<td><input type="password" name="password">
+												<td><input type="password" name="password" id = "password">
 												</td>
 											</tr>
 											<tr>

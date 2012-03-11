@@ -3,14 +3,19 @@ package com.kiosk.dao.db;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-
 import com.kiosk.model.User;
 
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * UserManagmentDBDaoImpl.Java:  Implementation of methods requiring database queries for audio information
+ */
+
 @Repository
-public class UserManagementDaoImpl extends BaseDao implements UserManagementDao {
+public class UserManagementDBDaoImpl extends BaseDao implements
+		UserManagementDBDao {
 
 	// private static final Logger LOG = Logger
 	// .getLogger(UserManagementDaoImpl.class);

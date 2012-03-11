@@ -1,27 +1,23 @@
 package com.kiosk.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kiosk.dao.db.TariffDBDao;
-import com.kiosk.model.Tariff;
-
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * TariffServiceImpl.Java:  This class contains the business logic related to tariff management component.
+ */
 @Service
 public class TariffServiceImpl implements TariffService {
 
 	@Autowired
 	private TariffDBDao tariffDBDao;
 
-	@Override
-	public List<Tariff> getTariffs() {
-		return tariffDBDao.getTariff();
-	}
 
 	@Override
 	public boolean deleteTariff(int tariffID) {
-		// TODO Auto-generated method stub
 
 		int i = tariffDBDao.deleteTariff(tariffID);
 
@@ -35,20 +31,13 @@ public class TariffServiceImpl implements TariffService {
 	}
 
 	@Override
-	public Tariff getIndividualTariffs(int tariffID) {
-		// TODO Auto-generated method stub
-		return tariffDBDao.getIndividualTariff(tariffID);
-	}
-
-	@Override
 	public boolean updateTariff(int id, Double price, String level) {
-		// TODO Auto-generated method stub
 
 		int i = tariffDBDao.updateTariff(id, price, level);
-
 		if (i > 0) {
 			return true;
-		} else {
+		} 
+		else {
 			return false;
 		}
 	}
@@ -61,7 +50,6 @@ public class TariffServiceImpl implements TariffService {
 		if (i > 0) {
 			return true;
 		}
-
 		else {
 			return false;
 		}

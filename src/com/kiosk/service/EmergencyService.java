@@ -1,7 +1,6 @@
 package com.kiosk.service;
 
-
-public interface EmergencyStopService {
+public interface EmergencyService {
 
 	public boolean triggerEmergencyStop();
 

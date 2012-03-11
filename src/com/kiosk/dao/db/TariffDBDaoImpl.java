@@ -9,12 +9,18 @@ import org.springframework.stereotype.Repository;
 
 import com.kiosk.model.Tariff;
 
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * TariffDBDaoImpl.Java:  Implementation of methods requiring CRUD queries relating to tariffs.
+ */
+
 @Repository
 public class TariffDBDaoImpl extends BaseDao implements TariffDBDao {
 
 	// private static final Logger LOG = Logger.getLogger(AdminDBDaoImpl.class);
 
-	public List<Tariff> getTariff() {
+	public List<Tariff> getTariffs() {
 
 		return getJdbcTemplate()
 				.query("SELECT price_ID,price, audio_level FROM price group by Upper(audio_level) order by price_ID asc",
