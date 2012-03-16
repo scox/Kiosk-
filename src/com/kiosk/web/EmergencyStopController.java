@@ -21,7 +21,7 @@
 	@Controller
 	@SessionAttributes
 	public class EmergencyStopController {
-	
+	 
 		@Autowired
 		private EmergencyService emergencyStopService;
 	

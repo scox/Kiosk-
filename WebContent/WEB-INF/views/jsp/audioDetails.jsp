@@ -37,10 +37,11 @@
 
 <title>Audio Results</title>
 
-        <script type="text/javascript" language="javascript">
-        function confirmDelete()
-        {return confirm('Are you sure you want to delete this?');}
-        </script>
+<script type="text/javascript" language="javascript">
+	function confirmDelete() {
+		return confirm('Are you sure you want to delete this?');
+	}
+</script>
 
 
 </head>
@@ -88,45 +89,44 @@ Command failed! <a
 
 
 
-				
-	
-					<tr>
+
+
+				<tr>
 
 
 
-						<td><c:out value="${audio.audioID}" />
-						</td>
-						<td><c:out value="${audio.exhibitNumber}"/>
-						</td>
-						<td><c:out value="${audio.trackInfo}" />
-						</td>
+					<td><c:out value="${audio.audioID}" />
+					</td>
+					<td><c:out value="${audio.exhibitNumber}" />
+					</td>
+					<td><c:out value="${audio.trackInfo}" />
+					</td>
 
-						<td><c:out value="${audio.level}" />
+					<td><c:out value="${audio.level}" />
+					</td>
 
-						</td>
+
+					<td><c:out value="${audio.language}" />
+					</td>
+
+					<td><c:out value="${audio.roomNo}" />
+					</td>
+					<td><a
+						href="playAudio.htm?audioID=<c:out value="${audio.audioID}" />">Play</a>
+					</td>
 
 
-						<td><c:out value="${audio.language}" />
-						</td>
-
-						<td><c:out value="${audio.roomNo}" />
-						</td>
-						<td><a
-			href="playAudio.htm?audioID=<c:out value="${audio.audioID}" />">Play</a>
-						</td>
-						
-
-					</tr>
+				</tr>
 			</table>
 			<table border="0">
 				<tr>
 					<td>
-					
-					
+
+
 						<form action="audioDetails.htm" onsubmit='return confirmDelete()'>
 							<input type="hidden" name="type" value="delete" /> <input
 								type="hidden" name="id" value="<c:out value="${id}" />" /> <input
-								type="submit" name="delete" value="Delete"/>
+								type="submit" name="delete" value="Delete" />
 						</form>
 					</td>
 				</tr>
@@ -135,16 +135,15 @@ Command failed! <a
 	</c:choose>
 
 
-	<script type="text/javascript"> 
+	<script type="text/javascript">
+		function onInvokeAction(id) {
+			setExportToLimit(id, '');
+			var parameterString = createParameterStringForLimit(id);
+			location.href = '${pageContext.request.contextPath}/audios.htm?'
+					+ parameterString;
 
-function onInvokeAction(id) {   
-	setExportToLimit(id, '');  
-	var parameterString = createParameterStringForLimit(id);   
-	location.href = '${pageContext.request.contextPath}/audios.htm?'+ parameterString;
-
-	
-	}
-</script>
+		}
+	</script>
 
 	<form name="transactionResults"
 		action="${pageContext.request.contextPath}/audios.htm">

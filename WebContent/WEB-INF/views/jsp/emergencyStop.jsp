@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -12,18 +12,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:choose>
-<c:when test="${triggerStatus == true}">
-Emergency Alert Triggered!! <a
-			href="admin.htm?type=home">Home</a>
-</c:when>
-<c:otherwise>
+	<c:choose>
+		<c:when test="${triggerStatus == true}">
+Emergency Alert Triggered!! <a href="admin.htm?type=home">Home</a>
+		</c:when>
+		<c:otherwise>
 
-Failed to trigger alert!! RUN <a
-			href="admin.htm?type=home">Home</a>
+Failed to trigger alert!! RUN <a href="admin.htm?type=home">Home</a>
 
-</c:otherwise>
-</c:choose>
+		</c:otherwise>
+	</c:choose>
 
 
 

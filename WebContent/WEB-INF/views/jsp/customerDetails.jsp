@@ -158,45 +158,42 @@ function isValidNumbers(evt) {
 		<table>
 			<tr>
 				<td width="25"></td>
-				<td>
-				 <form:form name="transForm"
+				<td><form:form name="transForm"
 						onsubmit="return (ValNumber()&&
 						cardnumberlengthRestriction(document.getElementById('cardno'), 16, 16)&&
 						monthlengthRestriction(document.getElementById('month'), 1, 2)&&
 						yearlengthRestriction(document.getElementById('year'), 4, 4)&&
 						seccodelengthRestriction(document.getElementById('seccode'), 3, 3))"
 						method="post" action="confirm.htm">
-						<table align = "center">
-							
+						<table align="center">
+
 							<tr>
-							<td colspan = "4" align = "center">
-							<b>Customer Details</b>
-							
-							</td>
-							
+								<td colspan="4" align="center"><b>Customer Details</b>
+								</td>
+
 							</tr>
-							
+
 							<tr>
 
 								<td><label class="desc"> Name </label> <span> <form:input
-											path="name" id="custname" size="8" tabindex="1" maxlength ="20"/> </span>
-											
-											
+											path="name" id="custname" size="8" tabindex="1"
+											maxlength="20" /> </span>
 								</td>
 								<td><label class="desc"> Address </label> <span> <form:input
-											path="address" id="address" type="text" size="8" tabindex="1" maxlength ="20" />
-								</span>
+											path="address" id="address" type="text" size="8" tabindex="1"
+											maxlength="20" /> </span>
 								</td>
 							</tr>
 
 							<tr>
 								<td><label class="desc"> Post Code </label> <span> <form:input
 											path="postCode" id="postcode" type="text" size="8"
-											tabindex="1" maxlength ="8" /> </span>
+											tabindex="1" maxlength="8" /> </span>
 								</td>
 
 								<td><label class="desc"> Tel No </label> <span> <form:input
-											path="telNo" id="tel" type="text" size="8" tabindex="1" maxlength ="11"/> </span>
+											path="telNo" id="tel" type="text" size="8" tabindex="1"
+											maxlength="11" /> </span>
 								</td>
 							</tr>
 
@@ -211,31 +208,30 @@ function isValidNumbers(evt) {
 
 									</form:select>
 								</td>
-								<td><label class="desc"> Language </label> 
-								
-								<form:select
+								<td><label class="desc"> Language </label> <form:select
 										path="language" id="language">
 										<form:option value="--SELECT--" />
-										<c:forEach items="${language}" var="language" varStatus="status">
+										<c:forEach items="${language}" var="language"
+											varStatus="status">
 											<form:option value="${language}" />
-											</c:forEach>
-											</form:select>
+										</c:forEach>
+									</form:select>
 								</td>
 
 							</tr>
-							
-							
+
+
 							<tr>
 								<td><label class="desc"> Email </label> <span> <form:input
-											path="email" id="email" type="text" size="18"
-											tabindex="1" maxlength ="30" /> </span>
+											path="email" id="email" type="text" size="18" tabindex="1"
+											maxlength="30" /> </span>
 								</td>
-<td><label class="desc"> Customer Type </label> <form:select
+								<td><label class="desc"> Customer Type </label> <form:select
 										path="customerType" id="customerType">
 										<form:option value="--SELECT--" />
-										
-											<form:option value="Individual" />
-											<form:option value="Group" />
+
+										<form:option value="Individual" />
+										<form:option value="Group" />
 
 										
 e
@@ -244,8 +240,8 @@ e
 							</tr>
 
 							<tr>
-								<td colspan="4" align ="center"><br></br>
-									<hr></hr><b> Payment Details </b></td>
+								<td colspan="4" align="center"><br></br>
+									<hr></hr> <b> Payment Details </b></td>
 							</tr>
 							<tr>
 								<td><label class="desc"> Card Type </label>
@@ -272,7 +268,8 @@ e
 							<tr>
 								<td><label class="desc"> Security Code </label> <span>
 										<form:input path="secCode" id="seccode" name="secCode"
-											type="text" maxlength="3" size="8" tabindex="1" onkeypress="return isValidNumbers(event)"/> </span>
+											type="text" maxlength="3" size="8" tabindex="1"
+											onkeypress="return isValidNumbers(event)" /> </span>
 								</td>
 								<td></td>
 								<td><label class="desc"> MM </label> <span> <form:input
@@ -287,8 +284,8 @@ e
 								</td>
 							</tr>
 							<tr>
-								<td colspan = "4" align = "center"><input id="purchase" name="purchase" type="submit"
-									value="Purchase" />
+								<td colspan="4" align="center"><input id="purchase"
+									name="purchase" type="submit" value="Purchase" />
 								</td>
 							</tr>
 						</table>
@@ -299,6 +296,6 @@ e
 
 	</div>
 	<!--container-->
-	
+
 </body>
 </html>

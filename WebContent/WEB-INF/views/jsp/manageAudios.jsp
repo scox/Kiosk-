@@ -15,11 +15,11 @@
 </style>
 
 <link rel="stylesheet" href="css/jmesa.css" />
- <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
 <script type="text/javascript" src="js/jmesa.js"></script>
 <script type="text/javascript" src="js/jquery.jmesa.js"></script>
 
- <script type="text/javascript">
+<script type="text/javascript">
 
 
 function ValData(){  
@@ -112,7 +112,7 @@ function isValidNumbers(evt) {
 
 	</script>
 
- 
+
 <style type="text/css">
 #stats {
 	width: 100%;
@@ -139,43 +139,44 @@ function isValidNumbers(evt) {
 </head>
 
 <body>
-<div id="document">
-<%@ include file="/css/head.jsp" %>
-			<%@ include file="/css/menu.jsp" %>
+	<div id="document">
+		<%@ include file="/css/head.jsp"%>
+		<%@ include file="/css/menu.jsp"%>
 
-<table cellpadding="0" cellspacing="0" border="0">
-				<tr valign="top">
-					<td id="navCell">
-						<div  id="nav2">
-							
-							<ul class="breadcrumb">
-								
-								<li><a href="#">Options</a></li>
-							</ul>
-							<ul class="navitemList">
-							
-					<li class="selected"><a href="manageAudios.htm?type=getAdd"">Add Audio</a></li>
-					
-					
-					
-							</ul>
-							
-								
-							
-							
-							
-							
-						</div>
-					</td>
-					<td id="mainCell">
-					<br></br>
-							<h2>Audio Manager</h2>
-							
-				
-						<div id="mainBody" class="grid_2-3_1-3">		
-							Audios <br></br>
-				
-				<c:if test="${(type) == 'getpage'}">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr valign="top">
+				<td id="navCell">
+					<div id="nav2">
+
+						<ul class="breadcrumb">
+
+							<li><a href="#">Options</a>
+							</li>
+						</ul>
+						<ul class="navitemList">
+
+							<li class="selected"><a href="manageAudios.htm?type=getAdd"">Add
+									Audio</a>
+							</li>
+
+
+
+						</ul>
+
+
+
+
+
+
+					</div></td>
+				<td id="mainCell"><br></br>
+					<h2>Audio Manager</h2>
+
+
+					<div id="mainBody" class="grid_2-3_1-3">
+						Audios <br></br>
+
+						<c:if test="${(type) == 'getpage'}">
 							<script type="text/javascript"> 
 
 function onInvokeAction(id) {   
@@ -187,104 +188,109 @@ function onInvokeAction(id) {
 	
 	}
 </script>
- 
-<form name="audioResults" action="${pageContext.request.contextPath}/manageAudios.htm"> 
-    ${output} </form>
-    </c:if>
-    
-    
-    <c:if test="${(type) == 'getAdd'}">
-    
-    
-    <form:form ModelAttribute="uploadAudio" onsubmit="return (ValData()&&roomlengthRestriction(document.getElementById('roomNo'), 1, 2) && validateFileExtension(this.file))" action = "addAudio.htm" enctype="multipart/form-data" method ="post">
-	<input type = "hidden" name = "type" value="getAdd" />
-	<input type = "hidden" name = "subtype" value="doAdd" />
-<table>
-<tr>
-<td>Exhibit Number</td>
 
-<td><form:input path="exhibitNumber" id="exhibitNumber" type="text"/></td>
-</tr>
-<tr>
-<td>Track Information</td>		
-<td><form:input path="trackInfo" id="trackInfo" type="text"/></td>	
-
-</tr>
-<tr>
-<td>Level (DD)</td>		
-<td>
-<form:select
-										path="level" id="level">
-										<form:option value="--SELECT--" />
-										<c:forEach items="${level}" var="level" varStatus="status">
-											<form:option value="${level.level}" />
-
-										</c:forEach>
-
-									</form:select>
-</td>	
-
-</tr>
-<tr>
-<td>Language(DD)</td>		
-<td>
-<form:select
-										path="language" id="language">
-										<form:option value="--SELECT--" />
-										<form:option value="English" />
-										<form:option value="French" />
-										<form:option value="German" />
-										<form:option value="Spanish" />
-											
-									</form:select>
-								</td>
+							<form name="audioResults"
+								action="${pageContext.request.contextPath}/manageAudios.htm">
+								${output}</form>
+						</c:if>
 
 
-</tr>
+						<c:if test="${(type) == 'getAdd'}">
 
-<tr>
-<td>Room Number</td>		
-<td><form:input path="roomNo" id="roomNo" maxlength = "2" onkeypress="return isValidNumbers(event)" /></td>	
 
-</tr>
+							<form:form ModelAttribute="uploadAudio"
+								onsubmit="return (ValData()&&roomlengthRestriction(document.getElementById('roomNo'), 1, 2) && validateFileExtension(this.file))"
+								action="addAudio.htm" enctype="multipart/form-data"
+								method="post">
+								<input type="hidden" name="type" value="getAdd" />
+								<input type="hidden" name="subtype" value="doAdd" />
+								<table>
+									<tr>
+										<td>Exhibit Number</td>
 
-<tr>
-<td>Audio</td>		
-<td><form:input path="audio" id="audio" name = "file" type="file" onchange="return validateFileExtension(this)"/></td>	
+										<td><form:input path="exhibitNumber" id="exhibitNumber"
+												type="text" />
+										</td>
+									</tr>
+									<tr>
+										<td>Track Information</td>
+										<td><form:input path="trackInfo" id="trackInfo"
+												type="text" />
+										</td>
 
-</tr>
+									</tr>
+									<tr>
+										<td>Level (DD)</td>
+										<td><form:select path="level" id="level">
+												<form:option value="--SELECT--" />
+												<c:forEach items="${level}" var="level" varStatus="status">
+													<form:option value="${level.level}" />
 
-</table>
-	<input type="submit" name="add" value="add"/>
-			</form:form>
-	
-	<c:if test="${(subtype) == 'doAdd'}">	
-	
-	<c:choose>
-		<c:when test="${(added) == true}">		
+												</c:forEach>
+
+											</form:select></td>
+
+									</tr>
+									<tr>
+										<td>Language(DD)</td>
+										<td><form:select path="language" id="language">
+												<form:option value="--SELECT--" />
+												<form:option value="English" />
+												<form:option value="French" />
+												<form:option value="German" />
+												<form:option value="Spanish" />
+
+											</form:select></td>
+
+
+									</tr>
+
+									<tr>
+										<td>Room Number</td>
+										<td><form:input path="roomNo" id="roomNo" maxlength="2"
+												onkeypress="return isValidNumbers(event)" />
+										</td>
+
+									</tr>
+
+									<tr>
+										<td>Audio</td>
+										<td><form:input path="audio" id="audio" name="file"
+												type="file" onchange="return validateFileExtension(this)" />
+										</td>
+
+									</tr>
+
+								</table>
+								<input type="submit" name="add" value="add" />
+							</form:form>
+
+							<c:if test="${(subtype) == 'doAdd'}">
+
+								<c:choose>
+									<c:when test="${(added) == true}">		
 		Successfully added audio. 
 		</c:when>
-		<c:otherwise>
+									<c:otherwise>
 		Failed to add try again. 
 		</c:otherwise>
-		</c:choose>
-	
-	</c:if>
-    
-    
-    </c:if>
-			
-											
-			</div>
-			</td>
+								</c:choose>
+
+							</c:if>
+
+
+						</c:if>
+
+
+					</div></td>
 			</tr>
-			
-</table>
+
+		</table>
 
 
 
-										</div>
-							
+	</div>
+
 
 
 </body>

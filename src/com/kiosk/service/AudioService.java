@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.util.List;
 
 import com.kiosk.model.Audio;
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * AudioService.Java: Java interface
+ */
+
 
 public interface AudioService {
 

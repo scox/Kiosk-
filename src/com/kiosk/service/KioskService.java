@@ -1,5 +1,11 @@
 package com.kiosk.service;
 
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * KioskService.Java: Java interface
+ */
+
 import java.util.List;
 
 import com.kiosk.model.Tariff;

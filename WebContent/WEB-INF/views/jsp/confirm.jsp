@@ -10,65 +10,68 @@
 
 <head>
 
-<title>
-Transaction Confirmation</title>
+<title>Transaction Confirmation</title>
 
 
 
 </head>
 
-<body onload="redirTimer()">  
+<body onload="redirTimer()">
 
-<script language="javascript">
-redirTime = "15000";
-redirURL = "index.jsp";
-function redirTimer() { self.setTimeout("self.location.href = redirURL;",redirTime); }
-//  End -->
-</script>
+	<script language="javascript">
+		redirTime = "15000";
+		redirURL = "index.jsp";
+		function redirTimer() {
+			self.setTimeout("self.location.href = redirURL;", redirTime);
+		}
+	//  End -->
+	</script>
 
-<table width = "1000px" >
-<tr>
-<td width = "25%">
-</td>
-<td width = "50%" align = "center">
-<img  src="images/logo.bmp" alt="" />
-</td>  
-<td width = "25%">     
-</td>
-</tr>
-<tr>
-<td>
-</td>
-<td align = "center">
-<c:choose>
-<c:when test="${(uploaded.result) == true}">
+	<table width="1000px">
+		<tr>
+			<td width="25%"></td>
+			<td width="50%" align="center"><img src="images/logo.bmp" alt="" />
+			</td>
+			<td width="25%"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td align="center"><c:choose>
+					<c:when test="${(uploaded.result) == true}">
 
-<p> <font size="5" face="courier" > PIN = <c:out value="${uploaded.pin}" /></font>  </p>
+						<p>
+							<font size="5" face="courier"> PIN = <c:out
+									value="${uploaded.pin}" /> </font>
+						</p>
 
-<c:if test="${(uploaded.customerType) == 'Group'}">
-<br/>
-<p> <font size="5" face="courier" > Member PIN = <c:out value="${uploaded.memberPin}" /></font>  </p>
-</c:if>
-<br></br>
-<p>Please keep this for future reference.</p>
-<br></br>
-<p>return to <a href="index.jsp"><u>HOME</u></a></p>
+						<c:if test="${(uploaded.customerType) == 'Group'}">
+							<br />
+							<p>
+								<font size="5" face="courier"> Member PIN = <c:out
+										value="${uploaded.memberPin}" /> </font>
+							</p>
+						</c:if>
+						<br></br>
+						<p>Please keep this for future reference.</p>
+						<br></br>
+						<p>
+							return to <a href="index.jsp"><u>HOME</u> </a>
+						</p>
 
-</c:when>
-<c:otherwise>
-Unfortunately your transaction failed please <a href="index.jsp"><u>try again</u></a>
+					</c:when>
+					<c:otherwise>
+Unfortunately your transaction failed please <a href="index.jsp"><u>try
+								again</u> </a>
 
-</c:otherwise>
+					</c:otherwise>
 
-</c:choose>
-
-</td>
-<td>
-</td>
-</tr>    
+				</c:choose>
+			</td>
+			<td></td>
+		</tr>
 
 
-</table>
+	</table>
 
 </body>
 </html>

@@ -17,51 +17,44 @@
 </head>
 
 <body>
-<div id="document">
+	<div id="document">
 
-			<%@ include file="/css/head.jsp" %>
-			<%@ include file="/css/menu.jsp" %>
-<table cellpadding="0" cellspacing="0" border="0">
-	<tr valign="top">
-		<td id="navCell"></td>
-		<td>
+		<%@ include file="/css/head.jsp"%>
+		<%@ include file="/css/menu.jsp"%>
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr valign="top">
+				<td id="navCell"></td>
+				<td>
 
-		<table cellspacing="0" cellpadding="0" border="0" width = "770">
-			
-				<tr>	
-				<td align = "center">
-				<br/>
-			<form>
-<input type="button" value="Emergency Stop" onclick="window.location.href='emergencyStop.htm'"/> 
-</form>
-			</td>
-			</tr>
-			<tr>
-	
+					<table cellspacing="0" cellpadding="0" border="0" width="770">
 
-				<td align = "center">
-				
-				<c:if test="${type == 'home'}">
-				
-				<img src="images/home.png"/>
-				
-				</c:if>
-				
-				<c:if test="${type == 'help'}">
-				
-				<img src="images/help.png"/>
-				
-				</c:if>
-				
-				</td>
-				
-			</tr>
-			
-				
+						<tr>
+							<td align="center"><br />
+								<form>
+									<input type="button" value="Emergency Stop"
+										onclick="window.location.href='emergencyStop.htm'" />
+								</form>
+							</td>
+						</tr>
+						<tr>
+
+
+							<td align="center"><c:if test="${type == 'home'}">
+
+									<img src="images/home.png" />
+
+								</c:if> <c:if test="${type == 'help'}">
+
+									<img src="images/help.png" />
+
+								</c:if>
+							</td>
+
+						</tr>
+
+
 					</table>
-					
-					
-					</td>
+				</td>
 				<td width="220">&nbsp;</td>
 			</tr>
 
@@ -69,7 +62,7 @@
 		</table>
 
 
-</div>
+	</div>
 </body>
 </html>
 

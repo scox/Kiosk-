@@ -1,6 +1,10 @@
 package com.kiosk.service;
 
-
+/**
+ * Author: Sam Cox
+ * Date: 06/01/2012
+ * TariffService.Java: Java interface
+ */
 public interface TariffService {
 
 

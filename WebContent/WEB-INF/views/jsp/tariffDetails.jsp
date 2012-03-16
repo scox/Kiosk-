@@ -51,38 +51,32 @@
 
 
 				<form action="tariffDetails.htm">
-					<input type="hidden" name="type" value="doEdit" />
-					<input type="hidden" name="id" value="<c:out value="${tariff.tariffID}" />" />
-				<tr>
+					<input type="hidden" name="type" value="doEdit" /> <input
+						type="hidden" name="id"
+						value="<c:out value="${tariff.tariffID}" />" />
+					<tr>
 
 
 
-					<td><c:out value="${tariff.tariffID}" />
-					</td>
-					<td><input type="text" name="level"
-						value="<c:out value="${tariff.level}" />" />
-					</td>
-					<td><input type="text" name="price"
-						value="<c:out value="${tariff.price}" />" />
-					</td>
+						<td><c:out value="${tariff.tariffID}" /></td>
+						<td><input type="text" name="level"
+							value="<c:out value="${tariff.level}" />" /></td>
+						<td><input type="text" name="price"
+							value="<c:out value="${tariff.price}" />" /></td>
 
-				</tr>
-
-
+					</tr>
 			</table>
 			<table border="0">
 				<tr>
 					<td><input type="submit" name="update" value="Update" />
-						</form>
-					</td>
+						</form></td>
 					<td>
 						<form action="tariffDetails.htm">
 							<input type="hidden" name="type" value="delete" /> <input
 								type="hidden" name="id"
 								value="<c:out value="${tariff.tariffID}" />" /> <input
 								type="submit" name="delete" value="Delete" />
-						</form>
-					</td>
+						</form></td>
 				</tr>
 			</table>
 
